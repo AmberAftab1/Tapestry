@@ -1,0 +1,257 @@
+html, body{
+	margin:0; padding:0;
+	background-color: black;
+	font-family: Arial, sans-serif;
+}
+/*HEADER*/
+
+/*Search box */
+form#search-box input[type="text"]{
+	float: left;
+	margin-top: 50px;
+	display: block;
+	width: 100px;
+
+}
+
+form#search-box input[type="submit"]{
+	float: left;
+	margin-top: 50px;
+	width: 40px;
+	margin-right: 20%;
+	margin-left: 5px;
+}
+
+/*Title box*/
+div#title-box{
+	display: block;
+	color: salmon;
+	text-align: center;
+	width: 100%;
+
+}
+div#title-box h1{
+	margin-top: 50px;
+}
+
+div#logo{
+	display: none;
+}
+
+ul#primary-nav{  /*header navigation*/
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
+	margin:auto;
+	width: 100%;
+
+}
+
+ul#primary-nav li a{
+	display: block;
+	float:left;
+	text-decoration: none;
+	padding: 5px 5px;
+	background-color: coral;
+	color: white;
+	margin-top: 20px;
+}
+
+ul#primary-nav li a:hover{
+	background-color: orange;
+}
+
+ul#primary-nav li a.selected {
+	background-color: purple;
+}
+
+/*CONTENT CODE*/
+
+div#content{
+	clear: left;
+}
+
+div#content h2{
+	color: coral;
+	width: 100%;
+	text-align: center;
+	margin-top:  30%;
+}
+
+div#content img{ /*image hidden from users with screens < 1050px*/
+	display: none;
+}
+
+
+form#new-post{
+	clear: left;
+	color: coral;
+	width: 100%;
+	text-align: center;
+	padding: 5px;
+}
+
+
+input#title-text, input#first-line-text{ /*user input options*/
+	margin: auto;
+	display: block;
+	width: 30%;
+	margin-bottom: 5%;
+}
+
+
+
+
+form#suggest [type= "submit"]{
+	clear: left;
+	display: block;
+	margin: auto;
+	width: 30%;
+	margin-top: 5%;
+}
+
+.dropbtn {  /*drop down button for categories*/
+	background-color: coral;
+	color: white;
+	padding: 8px;
+	/*font-size: 16px;*/
+	border: none;
+	cursor: pointer;
+	font-size: 14px;
+
+
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+	position: relative;
+	display: inline-block;
+	width:100%;
+	margin-left: 37%;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: coral;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	color: white;
+	text-decoration: none;
+	padding: 8px;
+	font-size: 14px;
+	display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: purple;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+	background-color: coral;
+} /*end of drop down button*/
+
+/*content code ends here*/
+
+/*FOOTER*/
+
+div#footer{
+	clear: left;
+	width: 100%;
+
+}
+ul#footer-nav{
+	margin-left: 13%;
+	list-style-type: none;
+}
+
+
+ul#footer-nav li{
+	float: left;
+	margin-left: 10px;
+	margin-top: 100px;
+}
+
+ul#footer-nav li a.selected{
+	color: deepskyblue;
+}
+
+
+
+@media all and  (min-width: 1050px) {
+	/* HEADER STYLE */
+	form#search-box input[type="text"]{
+		width: 100px;
+		float:left;
+	}
+	div#logo{
+		margin: auto;
+		width: 15%;
+		display: block;
+
+	}
+	div#title-box{
+		float: left;
+		width: 40%;
+	}
+
+	ul#primary-nav{
+		float: left;
+		padding: 0;
+		width: 29%;
+		margin-left: 0;
+	}
+
+	ul#primary-nav li{
+		float: left;
+	}
+	ul#primary-nav li a{
+		margin-top: 50px;
+	}
+
+
+	/*CONTENT STYLE */
+
+
+	div#content h2{
+		margin-top: 0;
+	}
+
+	div#content img{
+		display: block;
+		max-width: 20%;
+		margin: auto;
+		padding-bottom: 15px;
+	}
+
+	.dropdown{
+		margin-left: 47%;
+	}
+
+	input#title-text, input#first-line-text{
+		width: 10%;
+		margin-bottom: 1%;
+	}
+
+
+
+
+	form#suggest [type= "submit"]{
+		width: 10%;
+		margin-top: 1%;
+	}
+
+
+	/* FOOTER STYLE */
+	ul#footer-nav {
+		margin-left: 40%;
+	}
+}

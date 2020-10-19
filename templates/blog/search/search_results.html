@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+
+{% block styles %}
+    <link rel="stylesheet" type = "text/css" href="{% static "css/responsive-search-results.css"%}">
+{% endblock %}
+
+{% block content %}
+
+    <div id = "content"> <!-- main content of the page -->
+            <div id = "search-results"> <!-- info about website -->
+                <h2> Search Results </h2>
+            </div>
+    </div><!-- content div ends here -->
+
+{% endblock %}

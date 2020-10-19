@@ -1,0 +1,45 @@
+{% extends "blog/base.html" %}
+
+{% load static %}
+
+
+{% block styles %}
+    <link rel="stylesheet" type = "text/css" href="{% static "css/responsive-newpost.css"%}">
+{% endblock %}
+
+
+{% block new-post %}<a href="{% url "blog:new_post" %}" class="selected">New Post</a>{% endblock %}
+
+{% block content %}
+
+    <div id = "content">
+            <h2> New Post </h2> <!-- user creating new post -->
+            <form id = "new-post">
+                <img src = "{% static "img/pen.jpg" %}" alt = "pen" width = 250>
+                <input type = "text" id = "title-text" placeholder = "Title">
+                <input type = "text" id = "first-line-text" placeholder = "First Line">
+            </form>
+
+            <div class="dropdown"> <!-- drop down menu for categories -->
+                <button class="dropbtn">Categories ></button>
+                <div class="dropdown-content">
+                <a href="#">Angry</a>
+                <a href="#">Friendship</a>
+                <a href="#">History</a>
+                <a href="#">Humor</a>
+                <a href="#">Loss</a>
+                <a href="#">Love</a>
+                <a href="#">Nature</a>
+                <a href="#">Nihilism</a>
+                <a href="#">Political</a>
+                <a href="#">Sadness</a>
+                </div>
+            </div>
+
+            <form id = "suggest">  <!-- user suggestion -->
+                <input type = "submit" name = "cancel" value = "Cancel"><a href = "#"></a>
+                <input type = "submit" name = "save" value = "Save"><a href = "#"></a>
+            </form>
+        </div> <!-- content div ends here -->
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+
+{% block styles %}
+    <link rel="stylesheet" type = "text/css" href="{% static "css/responsive-home.css"%}">
+{% endblock %}
+
+{% block nav-home %}<a href="{% url "blog:home_page_index" %}" class = "selected">Home</a>{% endblock %}
+
+{% block content %}
+<div id = "content"> <!-- main content of the page -->
+            <div id = "about"> <!-- info about website -->
+                <h2> About </h2>
+                <p> Collaborative or collective poetry is an alternative and creative technique for writing poetry by more than one person.
+                    The principal aim of collaborative poetry is to create poems with multiple collaborations from various authors.
+                    In a common example of collaborative poetry, there may be numerous authors working in conjunction with one another to try to form a unified voice that can still maintain their individual voices.</p> <!-- source: wikipedia -->
+            </div>
+
+            <ul id = "categories"> <!-- categories of poems -->
+                <li><a href="{% url 'blog:post_list' %}">Angry</a></li>
+                <li><a href="{% url 'blog:post_list' %}">Friendship</a></li>
+                <li><a href="{% url 'blog:post_list' %}">History</a></li>
+                <li><a href="{% url 'blog:post_list' %}"> Humor </a></li>
+                <li><a href="{% url 'blog:post_list' %}">Loss</a></li>
+                <li><a href="{% url 'blog:post_list' %}">Love</a></li>
+                <li><a href="{% url 'blog:post_list' %}">Nature</a></li>
+                <li><a href="{% url 'blog:post_list' %}">Nihilism</a></li>
+                <li><a href="{% url 'blog:post_list' %}">Political</a></li>
+                <li><a href="{% url 'blog:post_list' %}">Sadness</a></li>
+            </ul>
+
+            <div class="dropdown"> <!-- drop down menu for mobile view -->
+                <button class="dropbtn">Categories ></button>
+                <div class="dropdown-content">
+                <a href="{% url 'blog:post_list' %}">Angry</a>
+                <a href="{% url 'blog:post_list' %}">Friendship</a>
+                <a href="{% url 'blog:post_list' %}">History</a>
+                <a href="{% url 'blog:post_list' %}"> Humor </a>
+                <a href="{% url 'blog:post_list' %}">Loss</a>
+                <a href="{% url 'blog:post_list' %}">Love</a>
+                <a href="{% url 'blog:post_list' %}">Nature</a>
+                <a href="{% url 'blog:post_list' %}">Nihilism</a>
+                <a href="{% url 'blog:post_list' %}">Political</a>
+                <a href="{% url 'blog:post_list' %}">Sadness</a>
+                </div>
+            </div>
+        </div> <!-- content div ends here -->
+{% endblock %}
+
+{% block foot-home %}<a href="{% url "blog:home_page_index" %}" class = "selected">Home</a>{% endblock %}
