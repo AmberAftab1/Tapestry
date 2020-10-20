@@ -40,8 +40,10 @@
             </div>
 
             {% block add_suggestion %}<form action = {% url "blog:details2" category poem.id %}> <!-- Button for user to add suggestion -->
+            {% if request.session.username %}
                 <button type = "submit">Add suggestion!</button>
-            </form>
+                </form>
+            {% endif %}
             {% endblock %}
         </div> <!-- content div ends here -->
 

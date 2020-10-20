@@ -14,32 +14,29 @@
 
     <div id = "content">
             <h2> New Post </h2> <!-- user creating new post -->
-            <form id = "new-post">
-                <img src = "{% static "img/pen.jpg" %}" alt = "pen" width = 250>
-                <input type = "text" id = "title-text" placeholder = "Title">
-                <input type = "text" id = "first-line-text" placeholder = "First Line">
-            </form>
 
             <div class="dropdown"> <!-- drop down menu for categories -->
-                <button class="dropbtn">Categories ></button>
+            <form name="dropdown_form" action="{% url "blog:home_page_index" %}" method="post">
+                    <img src = "{% static "img/pen.jpg" %}" alt = "pen" width = 250>
+                    <input type = "text" id = "title-text" placeholder = "Title" name="title">
+                    <input type = "text" id = "first-line-text" placeholder = "First Line" name="text">
+                {% csrf_token %}
+                <button class="dropbtn">Categories</button>
                 <div class="dropdown-content">
-                <a href="#">Angry</a>
-                <a href="#">Friendship</a>
-                <a href="#">History</a>
-                <a href="#">Humor</a>
-                <a href="#">Loss</a>
-                <a href="#">Love</a>
-                <a href="#">Nature</a>
-                <a href="#">Nihilism</a>
-                <a href="#">Political</a>
-                <a href="#">Sadness</a>
+                <select id="drop_categories" name="drop_categories">
+                    <option value="%">---------</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat }}">{{ cat }}</option>
+                    {% endfor %}
+                </select>
                 </div>
+                    <input type = "submit" name = "cancel" value = "Cancel">
+                    <input type = "submit" name = "save" value = "Save">
+            </form>
             </div>
 
-            <form id = "suggest">  <!-- user suggestion -->
-                <input type = "submit" name = "cancel" value = "Cancel"><a href = "#"></a>
-                <input type = "submit" name = "save" value = "Save"><a href = "#"></a>
-            </form>
+{#            <form id = "suggest">  <!-- user suggestion -->#}
+{#            </form>#}
         </div> <!-- content div ends here -->
 
 {% endblock %}

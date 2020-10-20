@@ -14,19 +14,18 @@
     <body>
 
         <div id = "header"> <!-- div for header -->
-
             <form id="search-box" action = "{% url "blog:search_results" %}" method = "get"> <!-- Search box -->
-                <input type = "text" name = "search-poems" placeholder="bush pooper">
-                <input type = "submit" name = "submit-search" value = "Go">
+                    <input type = "text" name = "search-poems" placeholder="bush pooper">
+                    <input type = "submit" name = "submit-search" value = "Go">
             </form>
 
         {% block login-box %}
             {% if request.session.username %}
-                <form id = "login-box" style="color:blue">
+                <form id = "login-box" style="color:#59bbff">
                      <p> Logged in as <strong> {{ request.session.username }}</strong> | <a href = {% url 'blog:logout' %}> Log out</a></p>
                  </form>
             {% else %}
-                <form id = "login-box" style="color:blue">
+                <form id = "login-box" style="color:#59bbff">
                     <p><a href = {% url 'blog:login_page' %}>Log in</a></p>
                 </form>
             {% endif%}

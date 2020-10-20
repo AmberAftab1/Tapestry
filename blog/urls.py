@@ -26,4 +26,3 @@ urlpatterns = [
     path('<str:category>/<int:poem_id>', views.details, name="details"),
     path('<str:category>/<int:poem_id>/add-suggestion', views.details2, name="details2")
 ]
-# TODO: fix category issue in URL

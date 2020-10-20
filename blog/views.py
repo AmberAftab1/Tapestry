@@ -5,6 +5,11 @@ from .models import poems, suggestions, regular_user, admin_user, categories, so
 # Create your views here.
 
 def home_page_index(request):  # home page view
+    print(request)
+    print(request.POST.get("drop_categories"))
+    print(request.POST.get("title"))
+    print(request.POST.get("text"))
+    print(request.POST.get("save"))
     return render(request, "blog/home_page/index.html", {"categories": sorted_categories})
 
 def posts_list(request, category): #list view
@@ -40,8 +45,10 @@ def details2(request, poem_id, category):  # modified details page view
 
 
 def new_post(request):  # new post page view
-    return render(request, "blog/new_post/new_post.html")
-
+    if request.session["username"]:
+        return render(request, "blog/new_post/new_post.html", {"categories": sorted_categories})
+    else:
+        return redirect('blog:home_page_index')
 
 def search_results(request):  # search results view
     return render(request, "blog/search/search_results.html")

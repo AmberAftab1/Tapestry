@@ -6,10 +6,12 @@
 {% block styles %}
     <link rel="stylesheet" type = "text/css" href="{% static "css/responsive-details2.css"%}">
 {% endblock %}
-
-           {% block add_suggestion %} <form>  <!-- user suggestion -->
-                <input type = "text"  id = "new-suggestion" name = "new-suggestion" class = "post">
-                <input type = "button" class = "post" name = "cancel" value = "Cancel">
-                <input type = "button" id = "add" class = "post" name = "add" value = "Add">
-             </form>
-           {% endblock %}
+               {% block add_suggestion %}
+                   {% if request.session.username %}
+                    <form>  <!-- user suggestion -->
+                        <input type = "text"  id = "new-suggestion" name = "new-suggestion" class = "post">
+                        <input type = "button" class = "post" name = "cancel" value = "Cancel">
+                        <input type = "button" id = "add" class = "post" name = "add" value = "Add">
+                    </form>
+                   {% endif %}
+               {% endblock %}
