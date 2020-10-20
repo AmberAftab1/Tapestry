@@ -15,34 +15,26 @@
                 <p> Collaborative or collective poetry is an alternative and creative technique for writing poetry by more than one person.
                     The principal aim of collaborative poetry is to create poems with multiple collaborations from various authors.
                     In a common example of collaborative poetry, there may be numerous authors working in conjunction with one another to try to form a unified voice that can still maintain their individual voices.</p> <!-- source: wikipedia -->
+                <p>
+                    Tapestry is a social platform allowing for multiple users to generate collaborative poetry, belonging to different categories.
+                    Users can start a new poem with a title and a single line, or suggest a single line to be appended to existing poems.
+                    Other users can view existing suggestions for the next line of a poem, and upvote or downvote these suggestions.
+                    At the end of 24 hours, the line suggestion with the most upvotes gets appended to the poem.
+                </p>
             </div>
 
             <ul id = "categories"> <!-- categories of poems -->
-                <li><a href="{% url 'blog:post_list' %}">Angry</a></li>
-                <li><a href="{% url 'blog:post_list' %}">Friendship</a></li>
-                <li><a href="{% url 'blog:post_list' %}">History</a></li>
-                <li><a href="{% url 'blog:post_list' %}"> Humor </a></li>
-                <li><a href="{% url 'blog:post_list' %}">Loss</a></li>
-                <li><a href="{% url 'blog:post_list' %}">Love</a></li>
-                <li><a href="{% url 'blog:post_list' %}">Nature</a></li>
-                <li><a href="{% url 'blog:post_list' %}">Nihilism</a></li>
-                <li><a href="{% url 'blog:post_list' %}">Political</a></li>
-                <li><a href="{% url 'blog:post_list' %}">Sadness</a></li>
+                {% for category in categories %}
+                    <li><a href="{% url 'blog:post_list' %}">{{ category }}</a></li>
+                {% endfor %}
             </ul>
 
             <div class="dropdown"> <!-- drop down menu for mobile view -->
                 <button class="dropbtn">Categories ></button>
                 <div class="dropdown-content">
-                <a href="{% url 'blog:post_list' %}">Angry</a>
-                <a href="{% url 'blog:post_list' %}">Friendship</a>
-                <a href="{% url 'blog:post_list' %}">History</a>
-                <a href="{% url 'blog:post_list' %}"> Humor </a>
-                <a href="{% url 'blog:post_list' %}">Loss</a>
-                <a href="{% url 'blog:post_list' %}">Love</a>
-                <a href="{% url 'blog:post_list' %}">Nature</a>
-                <a href="{% url 'blog:post_list' %}">Nihilism</a>
-                <a href="{% url 'blog:post_list' %}">Political</a>
-                <a href="{% url 'blog:post_list' %}">Sadness</a>
+                    {% for category in categories %}
+                        <a href="{% url 'blog:post_list' %}">{{ category }}</a>
+                    {% endfor %}
                 </div>
             </div>
         </div> <!-- content div ends here -->
