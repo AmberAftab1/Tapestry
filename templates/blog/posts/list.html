@@ -15,8 +15,10 @@
                 {% for poem in poems  %}
                     {% if poem.category == category %}
                          <div class = "poem"> <!-- contains details about a single poem -->
-                        <a href = "#" class = "btn"><button type = "button" class = "upvote"> Upvote</button></a>
-                        <a href = "#"  class = "btn"><button type = "button" class = "downvote"> Downvote</button></a>
+                         {% if request.session.username %}
+                            <a href = "#" class = "btn"><button type = "button" class = "upvote"> Upvote</button></a>
+                            <a href = "#"  class = "btn"><button type = "button" class = "downvote"> Downvote</button></a>
+                         {% endif %}
                         <div class = "votes">{{poem.score}}</div>
                         <h3 class = "poem-title"><a href = "{% url "blog:details" category poem.id %}">{{poem.title}}</a></h3>
                         <p class = "poem-description">

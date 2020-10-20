@@ -75,7 +75,7 @@ function checkQueryString(){
     if (urlParams.has('search-poems')){
         var keyword = urlParams.get("search-poems");
         if (keyword == "bush pooper"){
-            var result = $(`<h2 class = "poem-title"><a href = "posts/3"> The Bush Pooper </a> </h2>
+            var result = $(`<h2 class = "poem-title"><a href = "Humor/3"> The Bush Pooper </a> </h2>
                 <p class = "poem-description">There once was a man from Nantucket, <br> Who liked to poop in a bucket, <br> He ate a worm and saw a fern, <br> And thought to himself, <br> Screw it!</p>`)
             $("#search-results").append(result);
 

@@ -22,7 +22,6 @@
                     At the end of 24 hours, the line suggestion with the most upvotes gets appended to the poem.
                 </p>
             </div>
-            {% if request.session.username %}
 
             <ul id = "categories"> <!-- categories of poems -->
                 {% for cat in categories %}
@@ -38,7 +37,6 @@
                 </div>
             </div>
 
-            {% endif %}
 
         </div> <!-- content div ends here -->
 {% endblock %}
