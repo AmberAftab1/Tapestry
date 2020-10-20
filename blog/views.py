@@ -45,7 +45,7 @@ def details2(request, poem_id, category):  # modified details page view
 
 
 def new_post(request):  # new post page view
-    if request.session["username"]:
+    if request.session.exists("username"):
         return render(request, "blog/new_post/new_post.html", {"categories": sorted_categories})
     else:
         return redirect('blog:home_page_index')
@@ -73,3 +73,5 @@ def logout(request):  # logout view
     del request.session['username']
     del request.session['role']
     return redirect('blog:login_page')
+
+# TODO: fix new post css, align login properly,
