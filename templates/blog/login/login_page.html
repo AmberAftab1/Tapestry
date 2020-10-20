@@ -10,7 +10,8 @@
 {% block content %}
 
           <div id = "content">
-            <form action="{% url "blog:home_page_index" %}" method="post">
+            <form action="{% url "blog:login" %}" method="post">
+                {% csrf_token %}
                 <div class="container">
                     <label id="uname"><b>Username</b></label>
                     <input type="text" class = "login" placeholder="Enter Username" name="uname" required>
