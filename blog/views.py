@@ -57,3 +57,9 @@ def login(request):
         return redirect('blog:home_page_index')
     else:
         return redirect('blog:login_page')
+
+
+def logout (request):
+    del request.session['username']
+    del request.session['role']
+    return redirect('blog:login_page')

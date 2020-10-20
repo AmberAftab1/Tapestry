@@ -14,6 +14,9 @@ urlpatterns = [
     path('login-page', views.login_page, name='login_page'),
     path('login', views.login, name = 'login'),
 
+    #log out page views
+    path('logout', views.logout, name = 'logout'),
+
     # details page views
     path('posts/<int:poem_id>', views.details, name="details"),
     path('posts/<int:poem_id>/add-suggestion', views.details2, name="details2"),
