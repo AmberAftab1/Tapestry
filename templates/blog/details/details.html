@@ -30,21 +30,22 @@
 
                 {% for suggestion in  suggestions %}
                     <div class = "suggestion">
-
+                        {% if request.session.username %}
                             <a href = "#" class = "btn"><button type = "button" class = "upvote"> Upvote</button></a>
                             <a href = "#" class = "btn"><button type = "button" class = "downvote"> Downvote</button></a>
+                        {% endif %}
                         <div class = "votes">{{ suggestion.score }}</div>
                         <p>{{ suggestion.line }}</p>
                     </div>
                 {% endfor %}
             </div>
 
-            {% block add_suggestion %}<form action = {% url "blog:details2" category poem.id %}> <!-- Button for user to add suggestion -->
             {% if request.session.username %}
-                <button type = "submit">Add suggestion!</button>
+                {% block add_suggestion %}<form action = {% url "blog:details2" category poem.id %}> <!-- Button for user to add suggestion -->
+                    <button type = "submit">Add suggestion!</button>
                 </form>
+                {% endblock %}
             {% endif %}
-            {% endblock %}
         </div> <!-- content div ends here -->
 
 {% endblock %}
