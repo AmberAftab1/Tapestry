@@ -1,67 +1,3 @@
-html, body{
-	margin:0; padding:0;
-	background-color: black;
-	font-family: Arial, sans-serif;
-}
-/*HEADER*/
-/*Search box */
-form#search-box input[type="text"]{
-	float: left;
-	margin-top: 50px;
-	display: block;
-	width: 100px;
-
-}
-
-form#search-box input[type="submit"]{
-	float: left;
-	margin-top: 50px;
-	width: 40px;
-	margin-right: 20%;
-	margin-left: 5px;
-}
-
-div#title-box{ /*title box*/
-	display: block;
-	color: salmon;
-	text-align: center;
-	width: 100%;
-
-}
-div#title-box h1{
-	margin-top: 50px;
-}
-
-div#logo{
-	display: none;
-}
-
-ul#primary-nav{ /*primary nav bar*/
-	padding: 0;
-	list-style-type: none;
-	text-align: center;
-	margin:auto;
-	width: 100%;
-
-}
-
-ul#primary-nav li a{
-	display: block;
-	float:left;
-	text-decoration: none;
-	padding: 5px 5px;
-	background-color: coral;
-	color: white;
-	margin-top: 20px;
-}
-
-ul#primary-nav li a:hover{
-	background-color: orange;
-}
-
-ul#primary-nav li a.selected {
-	background-color: purple;
-}
 /*CONTENT CODE*/
 
 div#content {
@@ -86,7 +22,7 @@ div#all-poems { /*displays all poems in given style*/
 }
 
 
-div.poem div.votes{ /*hides number of otes for mobile view*/
+div.poem div.votes{ /*hides number of votes for mobile view*/
 	display: none;
 }
 
@@ -95,10 +31,6 @@ div.poem div.votes .upvote-success{
 	color: green;
 	font-size: small;
 }
-
-/*div.poem a img{  !*hides upvotes/downvotes for mobile view*!*/
-/*	display: none;*/
-/*}*/
 
 div.poem {  /*list of poems displayed */
 	border-bottom: 1px solid #ccc;
@@ -131,65 +63,7 @@ div.poem p.msg{
 	font-size:medium;
 
 }
-
-/*Content styling ends here*/
-
-/*FOOTER*/
-
-div#footer{
-	clear: left;
-	width: 100%;
-
-}
-ul#footer-nav{
-	margin-left: 13%;
-	list-style-type: none;
-}
-
-
-ul#footer-nav li{
-	float: left;
-	margin-left: 10px;
-	margin-top: 100px;
-}
-
-ul#footer-nav li a.selected{
-	color: deepskyblue;
-}
-
-
-
 @media all and  (min-width: 1050px) {
-	/* HEADER STYLE */
-
-	form#search-box input[type="text"]{
-		width: 100px;
-		float:left;
-	}
-	div#logo{
-		margin: auto;
-		width: 15%;
-		display: block;
-
-	}
-	div#title-box{
-		float: left;
-		width: 40%;
-	}
-
-	ul#primary-nav{
-		float: left;
-		padding: 0;
-		width: 29%;
-		margin-left: 0;
-	}
-
-	ul#primary-nav li{
-		float: left;
-	}
-	ul#primary-nav li a{
-		margin-top: 50px;
-	}
 	/*CONTENT STYLE */
 
 	div.poem div.votes { /*Number of votes are made visible to screens > 1050px*/
@@ -199,19 +73,7 @@ ul#footer-nav li a.selected{
 		color: coral;
 	}
 
-
-	/*div.poem a img { !*Ability to upvote/downvote is made visible to screens > 1050px*!*/
-	/*	clear: left;*/
-	/*	display: block;*/
-	/*	width: 5%;*/
-	/*}*/
-
 	div.poem p.poem-description {
 		clear: left;
-	}
-
-	/* FOOTER STYLE */
-	ul#footer-nav {
-		margin-left: 40%;
 	}
 }

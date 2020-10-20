@@ -1,0 +1,132 @@
+html, body{
+    margin:0; padding:0;
+    background-color: black;
+    font-family: Arial, sans-serif;
+}
+/*HEADER*/
+
+
+form#login-box p{
+    color: deepskyblue;
+    text-align: center;
+    width: 100%;
+}
+
+
+form#search-box {
+    float: left;
+    margin-top: 50px;
+    width: 33%;
+    min-width: 150px;
+}
+
+/*Search box */
+form#search-box input[type="text"]{
+    width: 100px;
+}
+
+/*Title box*/
+div#title-box {
+    display: block;
+    min-width:200px;
+    margin:auto;
+    float: left;
+    width: 33%;
+}
+div#title-box h1{
+    color: salmon;
+    text-align: center;
+    margin-top: 45px;
+}
+
+div#logo{
+    display: none;
+}
+
+
+
+ul#primary-nav{  /*header navigation*/
+    clear:left;
+    padding: 0;
+    list-style-type: none;
+    width: 500px;
+    height: 80px;
+}
+
+ul#primary-nav li {
+    margin-left: 24%;
+
+}
+
+ul#primary-nav li a{
+    display: block;
+    float:left;
+    text-decoration: none;
+    padding: 5px 5px;
+    background-color: coral;
+    color: white;
+    margin-top: 50px;
+}
+
+ul#primary-nav li a:hover{
+    background-color: orange;
+}
+
+ul#primary-nav li a.selected {
+    background-color: purple;
+}
+
+/*FOOTER*/
+
+ul#footer-nav {
+    width: 300px;
+    min-width: 300px;
+    margin: auto;
+}
+
+ul#footer-nav li{
+    float: left;
+    margin-left: 10px;
+    margin-top: 50px;
+}
+
+ul#footer-nav li a.selected{
+    color: deepskyblue;
+}
+
+
+
+@media all and  (min-width: 1050px) {
+    /*switch to mobile view for width < 1050px*/
+    /* HEADER STYLE */
+    /*form#search-box input[type="text"] {*/
+    /*    width: 100px;*/
+    /*    float: left;*/
+    /*}*/
+
+    div#logo {
+        margin: auto;
+        width: 250px;
+        display: block;
+
+    }
+
+    ul#primary-nav li {
+        float: right;
+        margin: 0;
+    }
+
+    ul#primary-nav {
+        clear: none;
+        float: left;
+        padding: 0;
+        min-width: 300px;
+        width:33%;
+        margin: 0;
+    }
+
+    /* FOOTER STYLE */
+    ul#footer-nav {
+        margin-left: 40%;
+    }
+}

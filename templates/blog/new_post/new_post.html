@@ -16,12 +16,11 @@
             <h2> New Post </h2> <!-- user creating new post -->
 
             <div class="dropdown"> <!-- drop down menu for categories -->
-            <form name="dropdown_form" action="{% url "blog:home_page_index" %}" method="post">
+            <form name="dropdown_form" id="dropdown_form" action="{% url "blog:home_page_index" %}" method="post">
+                    {% csrf_token %}
                     <img src = "{% static "img/pen.jpg" %}" alt = "pen" width = 250>
                     <input type = "text" id = "title-text" placeholder = "Title" name="title">
                     <input type = "text" id = "first-line-text" placeholder = "First Line" name="text">
-                {% csrf_token %}
-                <button class="dropbtn">Categories</button>
                 <div class="dropdown-content">
                 <select id="drop_categories" name="drop_categories">
                     <option value="%">---------</option>
@@ -30,8 +29,10 @@
                     {% endfor %}
                 </select>
                 </div>
+                <div class="submit-buttons">
                     <input type = "submit" name = "cancel" value = "Cancel">
                     <input type = "submit" name = "save" value = "Save">
+                </div>
             </form>
             </div>
 

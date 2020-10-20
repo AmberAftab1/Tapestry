@@ -45,7 +45,7 @@ def details2(request, poem_id, category):  # modified details page view
 
 
 def new_post(request):  # new post page view
-    if request.session.exists("username"):
+    if "username" in request.session:
         return render(request, "blog/new_post/new_post.html", {"categories": sorted_categories})
     else:
         return redirect('blog:home_page_index')
