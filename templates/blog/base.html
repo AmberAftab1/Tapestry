@@ -37,12 +37,14 @@
                 <h1> Tapestry </h1>
             </div>
 
-            <ul id = "primary-nav"> <!-- navigation bar -->
-                <li>{% block nav-home %}<a href="{% url "blog:home_page_index" %}">Home</a>{% endblock %}</li>
-                <li>{% block new-post %}<a href="{% url "blog:new_post" %}">New Post</a>{% endblock %}</li>
-                <li>{% block your-post %}<a href="{% url "blog:new_post" %}">Your Posts</a>{% endblock %}</li>
-                <li>{% block top-post %}<a href="{% url "blog:new_post" %}">Top Posts</a>{% endblock %}</li>
-            </ul>
+            {% if request.session.username %}
+                <ul id = "primary-nav"> <!-- navigation bar -->
+                    <li>{% block nav-home %}<a href="{% url "blog:home_page_index" %}">Home</a>{% endblock %}</li>
+                    <li>{% block new-post %}<a href="{% url "blog:new_post" %}">New Post</a>{% endblock %}</li>
+                    <li>{% block your-post %}<a href="{% url "blog:new_post" %}">Your Posts</a>{% endblock %}</li>
+                    <li>{% block top-post %}<a href="{% url "blog:new_post" %}">Top Posts</a>{% endblock %}</li>
+                </ul>
+            {% endif %}
             <div id = "logo"> <!--Logo -->
                 <img src = "{% static "img/poetry.jpg" %}" alt = "poetry" width = 250>
             </div>
