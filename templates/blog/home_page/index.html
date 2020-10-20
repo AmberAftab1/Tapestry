@@ -22,21 +22,23 @@
                     At the end of 24 hours, the line suggestion with the most upvotes gets appended to the poem.
                 </p>
             </div>
-
-            <ul id = "categories"> <!-- categories of poems -->
-                {% for category in categories %}
-                    <li><a href="{% url 'blog:post_list' %}">{{ category }}</a></li>
-                {% endfor %}
-            </ul>
-
-            <div class="dropdown"> <!-- drop down menu for mobile view -->
-                <button class="dropbtn">Categories ></button>
-                <div class="dropdown-content">
+            {% if request.session.username %}
+                <ul id = "categories"> <!-- categories of poems -->
                     {% for category in categories %}
-                        <a href="{% url 'blog:post_list' %}">{{ category }}</a>
+                        <li><a href="{% url 'blog:post_list' %}">{{ category }}</a></li>
                     {% endfor %}
+                </ul>
+
+                <div class="dropdown"> <!-- drop down menu for mobile view -->
+                    <button class="dropbtn">Categories ></button>
+                    <div class="dropdown-content">
+                        {% for category in categories %}
+                            <a href="{% url 'blog:post_list' %}">{{ category }}</a>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
+            {% endif %}
+
         </div> <!-- content div ends here -->
 {% endblock %}
 
