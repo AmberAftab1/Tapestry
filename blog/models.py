@@ -48,6 +48,10 @@ suggestion3 = Suggestion(3, 3, "He was stupid,",-7)
 suggestions.append(suggestion3)
 
 
+regular_user = {"username": "dhruva" , "password": "regular"}
+admin_user = {"username": "admin", "password": "admin"}
+
+
 
 
 
