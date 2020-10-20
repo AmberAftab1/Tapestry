@@ -39,6 +39,12 @@ poem3 = Poem(
 )
 poems.append(poem3)
 
+poem4 = Poem(
+    4, "The Sad Person",
+    ["There was a sad person,", "Who nobody liked,", "That person is me."], 6, "Sadness"
+)
+poems.append(poem4)
+
 suggestions = []
 
 suggestion1 = Suggestion(1, 3, "There once was a woman from Maine,", 10)
@@ -49,6 +55,9 @@ suggestions.append(suggestion2)
 
 suggestion3 = Suggestion(3, 3, "He was stupid,", -7)
 suggestions.append(suggestion3)
+
+suggestion4 = Suggestion(4, 4, "Just kidding, PSYCH!", 30)
+suggestions.append(suggestion4)
 
 categories = {
     "Angry",
@@ -61,6 +70,8 @@ categories = {
     "Nihilism",
     "Political",
     "Sadness"}
+
+sorted_categories = sorted(list(categories))
 
 regular_user = {"username": "dhruva" , "password": "regular"}
 admin_user = {"username": "admin", "password": "admin"}

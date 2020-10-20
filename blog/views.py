@@ -1,39 +1,42 @@
 from django.shortcuts import render, redirect
-from .models import poems, suggestions, regular_user, admin_user, categories
+from .models import poems, suggestions, regular_user, admin_user, categories, sorted_categories
 
 
 # Create your views here.
 
 def home_page_index(request):
-    return render(request, "blog/home_page/index.html", {"categories": categories})
-
-
-def posts_list(request):
-    return render(request, "blog/posts/list.html", {"poems": poems})
+    return render(request, "blog/home_page/index.html", {"categories": sorted_categories})
 
 
 def login_page(request):
     return render(request, "blog/login/login_page.html")
 
 
-def details(request, poem_id):
+def posts_list(request, category):
+    if category in categories:
+        return render(request, "blog/posts/list.html", {"poems": poems, "category": category})
+    else:
+        return redirect('blog:home_page_index')
+
+
+def details(request, poem_id, category):
     poem_suggestions = []
     for poem in poems:
         if poem.id == poem_id:
             for suggestion in suggestions:
                 if suggestion.poem_id == poem.id:
                     poem_suggestions.append(suggestion)
-            return render(request, "blog/details/details.html", {"poem": poem, "suggestions": poem_suggestions})
+            return render(request, "blog/details/details.html", {"poem": poem, "suggestions": poem_suggestions, "category": category})
 
 
-def details2(request, poem_id):
+def details2(request, poem_id, category):
     poem_suggestions = []
     for poem in poems:
         if poem.id == poem_id:
             for suggestion in suggestions:
                 if suggestion.poem_id == poem.id:
                     poem_suggestions.append(suggestion)
-            return render(request, "blog/details/details2.html", {"poem": poem, "suggestions": poem_suggestions})
+            return render(request, "blog/details/details2.html", {"poem": poem, "suggestions": poem_suggestions, "category": category})
 
 
 def new_post(request):

@@ -24,16 +24,16 @@
             </div>
 
             <ul id = "categories"> <!-- categories of poems -->
-                {% for category in categories %}
-                    <li><a href="{% url 'blog:post_list' %}">{{ category }}</a></li>
+                {% for cat in categories %}
+                    <li><a href="{% url 'blog:post_list' cat %}">{{ cat }}</a></li>
                 {% endfor %}
             </ul>
 
             <div class="dropdown"> <!-- drop down menu for mobile view -->
                 <button class="dropbtn">Categories ></button>
                 <div class="dropdown-content">
-                    {% for category in categories %}
-                        <a href="{% url 'blog:post_list' %}">{{ category }}</a>
+                    {% for cat in categories %}
+                        <a href="{% url 'blog:post_list' cat %}">{{ cat }}</a>
                     {% endfor %}
                 </div>
             </div>

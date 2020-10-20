@@ -39,7 +39,7 @@
                 {% endfor %}
             </div>
 
-            {% block add_suggestion %}<form action = {% url "blog:details2" poem.id %}> <!-- Button for user to add suggestion -->
+            {% block add_suggestion %}<form action = {% url "blog:details2" category poem.id %}> <!-- Button for user to add suggestion -->
                 <button type = "submit">Add suggestion!</button>
             </form>
             {% endblock %}
