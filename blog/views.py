@@ -4,19 +4,19 @@ from .models import poems, suggestions, regular_user, admin_user, categories
 
 # Create your views here.
 
-def home_page_index(request):
+def home_page_index(request):  # home page view
     return render(request, "blog/home_page/index.html", {"categories": categories})
 
 
-def posts_list(request):
+def posts_list(request):  # list view
     return render(request, "blog/posts/list.html", {"poems": poems})
 
 
-def login_page(request):
+def login_page(request):  # login page view
     return render(request, "blog/login/login_page.html")
 
 
-def details(request, poem_id):
+def details(request, poem_id):  # details page view
     poem_suggestions = []
     for poem in poems:
         if poem.id == poem_id:
@@ -26,7 +26,7 @@ def details(request, poem_id):
             return render(request, "blog/details/details.html", {"poem": poem, "suggestions": poem_suggestions})
 
 
-def details2(request, poem_id):
+def details2(request, poem_id):  # modified details page view
     poem_suggestions = []
     for poem in poems:
         if poem.id == poem_id:
@@ -36,15 +36,15 @@ def details2(request, poem_id):
             return render(request, "blog/details/details2.html", {"poem": poem, "suggestions": poem_suggestions})
 
 
-def new_post(request):
+def new_post(request):  # new post page view
     return render(request, "blog/new_post/new_post.html")
 
 
-def search_results(request):
+def search_results(request):  # search results view
     return render(request, "blog/search/search_results.html")
 
 
-def login(request):
+def login(request):  # login view
     username = request.POST.get('uname')
     password = request.POST.get('psw')
     if username == regular_user['username'] and password == regular_user['password']:
@@ -59,7 +59,7 @@ def login(request):
         return redirect('blog:login_page')
 
 
-def logout (request):
+def logout(request):  # logout view
     del request.session['username']
     del request.session['role']
     return redirect('blog:login_page')
