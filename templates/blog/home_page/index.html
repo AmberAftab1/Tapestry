@@ -24,31 +24,17 @@
             </div>
 
             <ul id = "categories"> <!-- categories of poems -->
-                <li><a href="{% url 'blog:post_list' %}">Angry</a></li>
-                <li><a href="{% url 'blog:post_list' %}">Friendship</a></li>
-                <li><a href="{% url 'blog:post_list' %}">History</a></li>
-                <li><a href="{% url 'blog:post_list' %}"> Humor </a></li>
-                <li><a href="{% url 'blog:post_list' %}">Loss</a></li>
-                <li><a href="{% url 'blog:post_list' %}">Love</a></li>
-                <li><a href="{% url 'blog:post_list' %}">Nature</a></li>
-                <li><a href="{% url 'blog:post_list' %}">Nihilism</a></li>
-                <li><a href="{% url 'blog:post_list' %}">Political</a></li>
-                <li><a href="{% url 'blog:post_list' %}">Sadness</a></li>
+                {% for category in categories %}
+                    <li><a href="{% url 'blog:post_list' %}">{{ category }}</a></li>
+                {% endfor %}
             </ul>
 
             <div class="dropdown"> <!-- drop down menu for mobile view -->
                 <button class="dropbtn">Categories ></button>
                 <div class="dropdown-content">
-                <a href="{% url 'blog:post_list' %}">Angry</a>
-                <a href="{% url 'blog:post_list' %}">Friendship</a>
-                <a href="{% url 'blog:post_list' %}">History</a>
-                <a href="{% url 'blog:post_list' %}"> Humor </a>
-                <a href="{% url 'blog:post_list' %}">Loss</a>
-                <a href="{% url 'blog:post_list' %}">Love</a>
-                <a href="{% url 'blog:post_list' %}">Nature</a>
-                <a href="{% url 'blog:post_list' %}">Nihilism</a>
-                <a href="{% url 'blog:post_list' %}">Political</a>
-                <a href="{% url 'blog:post_list' %}">Sadness</a>
+                    {% for category in categories %}
+                        <a href="{% url 'blog:post_list' %}">{{ category }}</a>
+                    {% endfor %}
                 </div>
             </div>
         </div> <!-- content div ends here -->

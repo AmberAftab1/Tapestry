@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from .models import poems
 from .models import suggestions
+from .models import categories
 
 # Create your views here.
 
 def home_page_index(request):
-    return render(request, "blog/home_page/index.html")
+    return render(request, "blog/home_page/index.html", {"categories": categories})
 
 def posts_list(request):
     return render(request, "blog/posts/list.html", {"poems":  poems})
