@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 
-
+# poem class
 class Poem:
     def __init__(self, id, title, description, score, category):
         self.id = id
@@ -13,6 +13,7 @@ class Poem:
         self.category = category
 
 
+# suggestion class
 class Suggestion:
     def __init__(self, id, poem_id, line, score):
         self.id = id
@@ -21,6 +22,7 @@ class Suggestion:
         self.score = score
 
 
+# code for poems
 poems = []
 
 poem1 = Poem(
@@ -39,6 +41,7 @@ poem3 = Poem(
 )
 poems.append(poem3)
 
+# code for suggestions
 poem4 = Poem(
     4, "The Sad Person",
     ["There was a sad person,", "Who nobody liked,", "That person is me."], 6, "Sadness"
@@ -59,6 +62,7 @@ suggestions.append(suggestion3)
 suggestion4 = Suggestion(4, 4, "Just kidding, PSYCH!", 30)
 suggestions.append(suggestion4)
 
+# dictionary of categories
 categories = {
     "Angry",
     "Friendship",
@@ -73,10 +77,6 @@ categories = {
 
 sorted_categories = sorted(list(categories))
 
-regular_user = {"username": "dhruva" , "password": "regular"}
+# login credentials
+regular_user = {"username": "dhruva", "password": "regular"}
 admin_user = {"username": "admin", "password": "admin"}
-
-
-
-
-

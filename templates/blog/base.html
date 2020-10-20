@@ -20,16 +20,31 @@
                 <input type = "submit" name = "submit-search" value = "Go">
             </form>
 
+        {% block login-box %}
+            {% if request.session.username %}
+                <form id = "login-box" style="color:blue">
+                     <p> Logged in as <strong> {{ request.session.username }}</strong> | <a href = {% url 'blog:logout' %}> Log out</a></p>
+                 </form>
+            {% else %}
+                <form id = "login-box" style="color:blue">
+                    <p><a href = {% url 'blog:login_page' %}>Log in</a></p>
+                </form>
+            {% endif%}
+
+        {% endblock %}
+
             <div id = "title-box"> <!--For sitename -->
                 <h1> Tapestry </h1>
             </div>
 
-            <ul id = "primary-nav"> <!-- navigation bar -->
-                <li>{% block nav-home %}<a href="{% url "blog:home_page_index" %}">Home</a>{% endblock %}</li>
-                <li>{% block new-post %}<a href="{% url "blog:new_post" %}">New Post</a>{% endblock %}</li>
-                <li>{% block your-post %}<a href="{% url "blog:new_post" %}">Your Posts</a>{% endblock %}</li>
-                <li>{% block top-post %}<a href="{% url "blog:new_post" %}">Top Posts</a>{% endblock %}</li>
-            </ul>
+            {% if request.session.username %}
+                <ul id = "primary-nav"> <!-- navigation bar -->
+                    <li>{% block nav-home %}<a href="{% url "blog:home_page_index" %}">Home</a>{% endblock %}</li>
+                    <li>{% block new-post %}<a href="{% url "blog:new_post" %}">New Post</a>{% endblock %}</li>
+                    <li>{% block your-post %}<a href="{% url "blog:new_post" %}">Your Posts</a>{% endblock %}</li>
+                    <li>{% block top-post %}<a href="{% url "blog:new_post" %}">Top Posts</a>{% endblock %}</li>
+                </ul>
+            {% endif %}
             <div id = "logo"> <!--Logo -->
                 <img src = "{% static "img/poetry.jpg" %}" alt = "poetry" width = 250>
             </div>
