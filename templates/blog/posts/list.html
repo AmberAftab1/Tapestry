@@ -14,19 +14,25 @@
 
                 {% for poem in poems  %}
                     {% if poem.category == category %}
-                         <div class = "poem"> <!-- contains details about a single poem -->
-                         {% if request.session.username %}
-                            <a href = "#" class = "btn"><button type = "button" class = "upvote"> Upvote</button></a>
-                            <a href = "#"  class = "btn"><button type = "button" class = "downvote"> Downvote</button></a>
-                         {% endif %}
-                        <div class = "votes">{{poem.score}}</div>
-                        <h3 class = "poem-title"><a href = "{% url "blog:details" category poem.id %}">{{poem.title}}</a></h3>
-                        <p class = "poem-description">
-                            {% for line in poem.description|slice:":3" %}
-                                {{ line }} <br>
-                            {% endfor %}
-                        </p>
-                        </div>
+                        <form name = "delete-post" action = "{% url "blog:delete-post"%} "method = "post">
+                            {% csrf_token %}
+                             <div class = "poem"> <!-- contains details about a single poem -->
+                             {% if request.session.username == 'admin' %}
+                                     <button type="submit" name="delete-poem" value="{{ poem.id }}" onclick='return window.confirm("Are you sure you want to delete?");'>Delete</button>
+                             {% endif %}
+                             {% if request.session.username %}
+                                <a href = "#" class = "btn"><button type = "button" class = "upvote"> Upvote</button></a>
+                                <a href = "#"  class = "btn"><button type = "button" class = "downvote"> Downvote</button></a>
+                             {% endif %}
+                            <div class = "votes">{{poem.score}}</div>
+                            <h3 class = "poem-title"><a href = "{% url "blog:details" category poem.id %}">{{poem.title}}</a></h3>
+                            <p class = "poem-description">
+                                {% for line in poem.description|slice:":3" %}
+                                    {{ line }} <br>
+                                {% endfor %}
+                            </p>
+                            </div>
+                        </form>
                     {% endif %}
                 {% endfor  %}
 
