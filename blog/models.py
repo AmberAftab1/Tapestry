@@ -4,78 +4,27 @@ from django.db import models
 # Create your models here.
 
 # poem class
-class Poem:
-    def __init__(self, id, title, description, score, category):
-        self.id = id
-        self.title = title
-        self.description = description
-        self.score = score
-        self.category = category
+
+class Poem(models.Model):
+    title = models.CharField(max_length=200, default=None)
+    score = models.IntegerField(default=0)
+    description = models.TextField(default=None)
+    category = models.ForeignKey('Category',
+                                 on_delete=models.CASCADE)
+    author = models.CharField(max_length=50, default=None)
+    date = models.DateTimeField(auto_now_add=True)
 
 
-# suggestion class
-class Suggestion:
-    def __init__(self, id, poem_id, line, score):
-        self.id = id
-        self.poem_id = poem_id
-        self.line = line
-        self.score = score
+class Suggestion(models.Model):
+    poem_id = models.ForeignKey('Poem',
+                                on_delete=models.CASCADE)
+    line = models.CharField(max_length=500, default=None)
+    score = models.IntegerField(default=0)
+    date = models.DateTimeField(auto_now_add=True)
 
 
-# code for poems
-poems = []
-
-poem1 = Poem(
-    1, "Jack and Jill", ["Jack and Jill,", "They got a pill,", "To experience thrill,"], 46, "Humor")
-poems.append(poem1)
-
-poem2 = Poem(
-    2, "Blue Eyes", ["Blue eyes,", "Blond hair,", "Pig stys,"], 5, "Humor"
-)
-poems.append(poem2)
-
-poem3 = Poem(
-    3, "The Bush Pooper",
-    ["There once was a man from Nantucket,", "Who liked to poop in a bucket,", "He ate a worm and saw a fern,",
-     "And thought to himself,", " Screw it!"], -6, "Humor"
-)
-poems.append(poem3)
-
-# code for suggestions
-poem4 = Poem(
-    4, "The Sad Person",
-    ["There was a sad person,", "Who nobody liked,", "That person is me."], 6, "Sadness"
-)
-poems.append(poem4)
-
-suggestions = []
-
-suggestion1 = Suggestion(1, 3, "There once was a woman from Maine,", 10)
-suggestions.append(suggestion1)
-
-suggestion2 = Suggestion(2, 3, "He hunched over the fern,", -2)
-suggestions.append(suggestion2)
-
-suggestion3 = Suggestion(3, 3, "He was stupid,", -7)
-suggestions.append(suggestion3)
-
-suggestion4 = Suggestion(4, 4, "Just kidding, PSYCH!", 30)
-suggestions.append(suggestion4)
-
-# dictionary of categories
-categories = {
-    "Angry",
-    "Friendship",
-    "History",
-    "Humor",
-    "Loss",
-    "Love",
-    "Nature",
-    "Nihilism",
-    "Political",
-    "Sadness"}
-
-sorted_categories = sorted(list(categories))
+class Category(models.Model):
+    name = models.CharField(max_length=50, primary_key=True)
 
 # login credentials
 regular_user = {"username": "dhruva", "password": "regular"}

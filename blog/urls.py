@@ -20,11 +20,9 @@ urlpatterns = [
     # search page view
     path('search-results', views.search_results, name="search_results"),
 
-    #delete an item vies
-    path('delete-poem', views.delete_post, name="delete-post"),
-
     # posts views
     path('<str:category>', views.posts_list, name='post_list'),
+    path('<str:category>/sort-by:<str:sort_param>', views.posts_list, name='post_list'),
 
     # details page views
     path('<str:category>/<int:poem_id>', views.details, name="details"),

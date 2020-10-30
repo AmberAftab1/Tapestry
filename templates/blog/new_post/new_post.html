@@ -16,16 +16,16 @@
             <h2> New Post </h2> <!-- user creating new post -->
 
             <div class="dropdown"> <!-- drop down menu for categories -->
-            <form name="dropdown_form" id="dropdown_form" action="{% url "blog:home_page_index" %}" method="post">
+            <form name="dropdown_form" id="dropdown_form" action="{% url "blog:new_post" %}" method="post">
                     {% csrf_token %}
                     <img src = "{% static "img/pen.jpg" %}" alt = "pen" width = 250>
-                    <input type = "text" id = "title-text" placeholder = "Title" name="title">
-                    <input type = "text" id = "first-line-text" placeholder = "First Line" name="text">
+                    <input type = "text" id = "title-text" placeholder = "Title*" name="title" required>
+                    <input type = "text" id = "first-line-text" placeholder = "First Line*" name="text" required>
                 <div class="dropdown-content">
-                <select id="drop_categories" name="drop_categories">
-                    <option value="%">---------</option>
+                <select id="drop_categories" name="drop_categories" required>
+                    <option value="">Please select*</option>
                     {% for cat in categories %}
-                        <option value="{{ cat }}">{{ cat }}</option>
+                        <option value="{{ cat.name }}">{{ cat.name }}</option>
                     {% endfor %}
                 </select>
                 </div>

@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load humanize %}
 {% load static %}
 
 
@@ -10,11 +11,20 @@
 
     <div id = "content"> <!-- main contents of page -->
             <h2> {{ category }}</h2>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
             <div id = "all-poems">  <!-- all poems listed below-->
-
+                <form action = {% url "blog:post_list" category "score" %}> <!-- Button for user to sort by scores! -->
+                    <button type = "submit">Sort by score!</button>
+                </form>
                 {% for poem in poems  %}
-                    {% if poem.category == category %}
-                        <form name = "delete-post" action = "{% url "blog:delete-post"%} "method = "post">
+                    {% if poem.category_id == category %}
+                        <form name = "delete-post" action = "{% url "blog:post_list" category %}" method = "post">
                             {% csrf_token %}
                              <div class = "poem"> <!-- contains details about a single poem -->
                              {% if request.session.username == 'admin' %}
@@ -26,17 +36,16 @@
                              {% endif %}
                             <div class = "votes">{{poem.score}}</div>
                             <h3 class = "poem-title"><a href = "{% url "blog:details" category poem.id %}">{{poem.title}}</a></h3>
+                             <p style="color:deepskyblue; font-size: smaller">  Posted by {{ poem.author }} <br> {{ poem.date|naturaltime }} </p>
                             <p class = "poem-description">
-                                {% for line in poem.description|slice:":3" %}
-                                    {{ line }} <br>
-                                {% endfor %}
+                                <br> {{ poem.description|linebreaksbr|truncatechars:50}}
                             </p>
                             </div>
                         </form>
                     {% endif %}
                 {% endfor  %}
 
-            </div>
+            </div>s
         </div> <!-- content div ends here -->
 
 {% endblock %}

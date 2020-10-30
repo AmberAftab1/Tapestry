@@ -15,6 +15,13 @@ div.poem h2.poem-title {
 	text-align: center;
 }
 
+div.poem p.meta{
+	text-align: center;
+	color:deepskyblue;
+	font-size: smaller;
+}
+
+
 div.poem p.poem-description {
 	color: coral;
 	text-align: center;
@@ -30,6 +37,7 @@ div.suggestion { /*option to add suggestion given to users*/
 	margin-left: 25%;
 	text-align: center;
 	color: coral;
+	background-color: antiquewhite;
 }
 
 form input.post{

@@ -76,6 +76,28 @@ ul#primary-nav li a.selected {
     background-color: purple;
 }
 
+ul.messages{
+	font-weight: bold;
+
+}
+
+ul.messages li.error{
+    color: red;
+	list-style-type: none;
+	text-align: center;
+}
+
+ul.messages li.success{
+    color: green;
+    list-style-type: none;
+	text-align: center;
+}
+
+ul.messages li.warning{
+    color: pink;
+    list-style-type: none;
+	text-align: center;
+}
 /*FOOTER*/
 
 ul#footer-nav {
