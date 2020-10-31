@@ -1,0 +1,43 @@
+{% extends "blog/details/details.html" %}
+
+{% load static %}
+
+
+{% block styles %}
+    <link rel="stylesheet" type = "text/css" href="{% static "css/responsive-newpost.css"%}">
+{% endblock %}
+
+
+{% block new-post %}<a href="{% url "blog:edit-post" category poem.id %}" class="selected">Edit Post</a>{% endblock %}
+
+{% block content %}
+
+    <div id = "content">
+            <h2> Edit Post </h2> <!-- user creating new post -->
+
+            <div class="dropdown"> <!-- drop down menu for categories -->
+            <form name="dropdown_form" id="dropdown_form" action="{% url "blog:edit-post" category poem.id %}" method="post">
+                    {% csrf_token %}
+                    <img src = "{% static "img/pen.jpg" %}" alt = "pen" width = 250>
+                    <input type = "text" id = "title-text" placeholder = "Title*" name="title" required>
+                    <input type = "text" id = "first-line-text" placeholder = "First Line*" name="text" required>
+                <div class="dropdown-content">
+                <select id="drop_categories" name="drop_categories" required>
+                    <option value="">Please select*</option>
+                    {% for cat in categories %}
+                        <option value="{{ cat.name }}">{{ cat.name }}</option>
+                    {% endfor %}
+                </select>
+                </div>
+                <div class="submit-buttons">
+                    <input type = "submit" name = "cancel" value = "Cancel">
+                    <input type = "submit" name = "save" value = "Save">
+                </div>
+            </form>
+            </div>
+
+{#            <form id = "suggest">  <!-- user suggestion -->#}
+{#            </form>#}
+        </div> <!-- content div ends here -->
+
+{% endblock %}
