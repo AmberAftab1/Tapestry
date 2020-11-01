@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import regular_user, admin_user, Poem, Category, Suggestion
+from django.http import JsonResponse
 
 
 # Create your views here.
@@ -108,4 +109,106 @@ def logout(request):  # logout view
     del request.session['role']
     return redirect('blog:login_page')
 
-# TODO: sort drop down menu in list view, edit view and message, new post and top post templates and views
+
+def poems_vote(request, category):  # view for upvoting/downvoting poems
+    is_ajax = request.headers.get('x-requested-with') == 'XMLHttpRequest'
+    if is_ajax and request.method == 'POST':
+        poem_id = request.POST.get('poem_id')
+        action = request.POST.get('action')
+        try:
+            poem = Poem.objects.get(pk=poem_id)
+            if action == 'upvote':
+                poem.score += 1
+            elif action == 'downvote':
+                poem.score -= 1
+            poem.save()
+            return JsonResponse({'success': 'success', 'score': poem.score}, status=200)
+        except Poem.DoesNotExist:
+            return JsonResponse({'error': 'No poem found with that ID.'}, status=200)
+    else:
+        return JsonResponse({'error': 'Invalid Ajax  request.'}, status=400)
+
+
+def suggestions_vote(request, category, poem_id):  # view for upvoting/downvoting suggestions
+    is_ajax = request.headers.get('x-requested-with') == 'XMLHttpRequest'
+    if is_ajax and request.method == 'POST':
+        suggestion_id = request.POST.get('suggestion_id')
+        action = request.POST.get('action')
+        try:
+            # poem = Poem.objects.get(pk=poem_id)
+            suggestion = Suggestion.objects.get(pk=suggestion_id)
+            if action == 'upvote':
+                suggestion.score += 1
+            elif action == 'downvote':
+                suggestion.score -= 1
+            suggestion.save()
+            return JsonResponse({'success': 'success', 'score': suggestion.score}, status=200)
+        except Poem.DoesNotExist:
+            return JsonResponse({'error': 'No poem found with that ID.'}, status=200)
+    else:
+        return JsonResponse({'error': 'Invalid Ajax  request.'}, status=400)
+
+
+def add_suggestion(request):  # view to handle user adding suggestions
+    is_ajax = request.headers.get('x-requested-with') == 'XMLHttpRequest'
+    if is_ajax and request.method == 'POST':
+        poem_id = request.POST.get('poem_id')
+        suggestion = request.POST.get('suggestion')
+        try:
+            poem = Poem.objects.get(pk=poem_id)
+            toAdd = Suggestion(
+                line=suggestion,
+                poem_id=poem,
+            )
+            toAdd.save()
+            return JsonResponse({'success': 'success', 'suggestion': toAdd.line}, status=200)
+        except Poem.DoesNotExist:
+            return JsonResponse({'error': 'No poem found with that ID.'}, status=200)
+    else:
+        return JsonResponse({'error': 'Invalid Ajax  request.'}, status=400)
+
+
+def edit_edit(request, category, poem_id):  # view for edit post
+    sorted_categories = Category.objects.all()
+    edited_poem = Poem.objects.get(pk=poem_id)
+    if "username" in request.session:  # checks if user is logged in
+        if request.method == 'POST':  # process the form
+            title = request.POST.get('title')
+            description = request.POST.get('text')
+            category = request.POST.get('drop_categories')
+            edited_poem.title = title
+            edited_poem.description = description
+            edited_poem.category_id = category
+            edited_poem.score = 0
+            author = request.session.get('username')
+
+            edited_poem.save()  # saves new poem to database
+
+            # success message for new post
+            messages.add_message(request, messages.INFO, "Post has been edited: %s" % edited_poem.title)
+
+            # returns detail view of added item
+            return redirect('blog:details', category, edited_poem.id)
+
+        else:  # show the form
+            return render(request, "blog/edit/edit.html",
+                          {"poem": edited_poem, "categories": sorted_categories, "category": category})
+    else:
+        return redirect('blog:home_page_index')
+
+
+# shows details of poem if one hovers over it
+def show_poem(request, category):
+    is_ajax = request.headers.get('x-requested-with') == 'XMLHttpRequest'
+    if is_ajax and request.method == 'POST':
+        poem_id = request.POST.get('poem_id')
+        try:
+            poem = Poem.objects.get(pk=poem_id)
+            details = poem.description
+            return JsonResponse({'success': 'success', 'details': details}, status=200)
+        except Poem.DoesNotExist:
+            return JsonResponse({'error': 'No poem found with that ID.'}, status=200)
+    else:
+        return JsonResponse({'error': 'Invalid Ajax  request.'}, status=400)
+
+# TODO: sort drop down menu in list view, edit view and message, new post and top post templates and views, vote for detail view

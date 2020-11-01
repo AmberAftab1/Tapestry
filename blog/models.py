@@ -27,5 +27,5 @@ class Category(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
 
 # login credentials
-regular_user = {"username": "dhruva", "password": "regular"}
+regular_user = {"username": "amber", "password": "regular"}
 admin_user = {"username": "admin", "password": "admin"}

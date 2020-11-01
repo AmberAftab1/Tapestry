@@ -98,6 +98,12 @@ ul.messages li.warning{
     list-style-type: none;
 	text-align: center;
 }
+
+ul.messages li.info{
+    color: blue;
+    list-style-type: none;
+    text-align:center;
+}
 /*FOOTER*/
 
 ul#footer-nav {

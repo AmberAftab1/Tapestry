@@ -8,10 +8,10 @@
 {% endblock %}
                {% block add_suggestion %}
                    {% if request.session.username %}
-                    <form>  <!-- user suggestion -->
+                    <form id = "suggestion-form">  <!-- user suggestion -->
                         <input type = "text"  id = "new-suggestion" name = "new-suggestion" class = "post">
-                        <input type = "button" class = "post" name = "cancel" value = "Cancel">
-                        <input type = "button" id = "add" class = "post" name = "add" value = "Add">
+                        <input type = "button" class = "post" id = "cancel" name = "cancel" value = "Cancel">
+                        <input type = "button" id = "add" class = "post" name = "add" value = "Add" data-poem-id = "{{ poem.id }}" data-ajax-url = "{% url 'blog:add-suggestion' %}" >
                     </form>
                    {% endif %}
                {% endblock %}

@@ -21,9 +21,17 @@
             <div class = "poem">  <!-- contains details about a single poem -->
                 <h2 class = "poem-title"> {{ poem.title}} </h2>
                  <p class = "meta">  Posted by {{ poem.author }} <br> {{ poem.date|naturaltime }} </p>
+                 {% if request.session.username == poem.author %}
+                     <form action = {% url "blog:edit-post" category poem.id %}>
+                       ><button type = "submit" class = "edit"> Edit</button>
+                     </form>
+                {% endif %}
                 <p class = "poem-description">
                     {{ poem.description|linebreaksbr}}
                 </p>
+                <form action = {% url "blog:post_list" category %}> <!-- Button for user to sort by scores! -->
+                        <button type = "submit">Back to {{ category }}</button>
+                </form>
             </div>
 
             <div id = "suggestions"> <!-- all suggestions for next line -->
@@ -38,8 +46,8 @@
                 {% for suggestion in  suggestions %}
                     <div class = "suggestion">
                         {% if request.session.username %}
-                            <a href = "#" class = "btn"><button type = "button" class = "upvote"> Upvote</button></a>
-                            <a href = "#" class = "btn"><button type = "button" class = "downvote"> Downvote</button></a>
+                            <a href = "#" class = "btn"><button type = "button" class = "upvote" data-suggestion-id = "{{ suggestion.id }}" data-action = "upvote" data-ajax-url = "{% url "blog:suggestions-vote" category poem.id %}"> Upvote</button></a>
+                            <a href = "#" class = "btn"><button type = "button" class = "downvote"  data-suggestion-id = "{{ suggestion.id }}"  data-action = "downvote" data-ajax-url = "{% url "blog:suggestions-vote" category poem.id %}"> Downvote</button></a>
                         {% endif %}
                         <div class = "votes">{{ suggestion.score }}</div>
                         <p>{{ suggestion.line }}</p>

@@ -20,13 +20,24 @@ urlpatterns = [
     # search page view
     path('search-results', views.search_results, name="search_results"),
 
+    # vote view
+    path('<str:category>/vote', views.poems_vote, name="poems-vote"),
+    path('<str:category>/<int:poem_id>/vote', views.suggestions_vote, name="suggestions-vote"),
+
+    # add suggestion view
+    path('add-suggestion', views.add_suggestion, name='add-suggestion'),
+
     # posts views
     path('<str:category>', views.posts_list, name='post_list'),
+    path('<str:category>/details', views.show_poem, name='show-poem'),
     path('<str:category>/sort-by:<str:sort_param>', views.posts_list, name='post_list'),
 
     # details page views
     path('<str:category>/<int:poem_id>', views.details, name="details"),
     path('<str:category>/<int:poem_id>/add-suggestion', views.details2, name="details2"),
+
+    # edit post view
+    path('<str:category>/<int:poem_id>/edit-post', views.edit_edit, name='edit-post'),
 
 
 ]
